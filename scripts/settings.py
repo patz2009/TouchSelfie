@@ -3,5 +3,5 @@
 #
 # Res Andy 
 
-camaddr = '192.168.69.105'
+camaddr = '192.168.69.110'
 camport = 7878
