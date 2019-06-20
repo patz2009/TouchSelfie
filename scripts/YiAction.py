@@ -17,6 +17,23 @@ class Camera:
     Thin wrapper for the cv2 camera interface to make it look like a PiCamera
     '''
     def __init__(self):
+		srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	srv.connect((camaddr, camport))
+
+	srv.send('{"msg_id":257,"token":0}')
+
+	data = srv.recv(512)
+	if "rval" in data:
+		token = re.findall('"param": (.+) }',data)[0]	
+	else:
+		data = srv.recv(512)
+		if "rval" in data:
+			token = re.findall('"param": (.+) }',data)[0]	
+
+	tosend = '{"msg_id":259,"token":%s,"param":"none_force"}' %token
+	srv.send(tosend)
+	srv.recv(512)
+
         self.cam = cv2.VideoCapture('rtsp://%s/live' %camaddr)
         time.sleep(.3) ## wait for auto adjust
         self.led = False
