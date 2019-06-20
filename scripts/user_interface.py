@@ -62,8 +62,8 @@ except ImportError:
     import fakehardware as HWB
 
 try:
-    import picamera as mycamera
-    from picamera.color import Color
+        import YiAction as mycamera
+        from fakehardware import Color
 except ImportError:
     log.warning("picamera not found, trying cv2_camera")
     try:
