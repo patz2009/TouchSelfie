@@ -17,7 +17,7 @@ class Camera:
     Thin wrapper for the cv2 camera interface to make it look like a PiCamera
     '''
     def __init__(self):
-		srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	srv.connect((camaddr, camport))
 
 	srv.send('{"msg_id":257,"token":0}')
